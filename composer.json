@@ -1,0 +1,19 @@
+{
+    "name": "abdumannon/php-mvc",
+    "description": "mvc-framework",
+    "autoload": {
+        "psr-4": {
+            "Abd\\Mvc\\": "./core",
+            "App\\": "./appcore"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abdumannon",
+            "email": "abdphyr@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}

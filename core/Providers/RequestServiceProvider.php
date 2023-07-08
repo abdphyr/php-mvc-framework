@@ -4,7 +4,7 @@ namespace Abd\Mvc\Providers;
 
 use Abd\Mvc\Request\Request;
 
-class RequestServiceProvider extends Provider
+class RequestServiceProvider extends ServiceProvider
 {
     public function register()
     {

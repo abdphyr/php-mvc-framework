@@ -1,12 +1,14 @@
 <?php
+
 namespace Abd\Mvc\View;
+
 use Abd\Mvc\Kernel\Kernel;
 
 class View
 {
   public string $title = 'Document';
 
-  public function renderView($view, $params = [], ?string $layout=null)
+  public function renderView($view, $params = [], ?string $layout = null)
   {
     $viewContent = self::renderOnlyView($view, $params);
     $layoutContent = self::layoutContent($layout);
@@ -28,6 +30,9 @@ class View
 
   private function renderOnlyView($view, $params)
   {
+    if (strpos($view, ".") !== false) {
+      $view = str_replace(".", "/", $view);
+    }
     foreach ($params as $key => $value) {
       $$key = $value;
     }

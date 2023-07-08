@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Models;
+
+class Template extends BaseModel
+{
+  protected $fillable = [];
+  protected $table = 'template';
+
+  public static function use()
+  {
+    return new Template();
+  }
+}

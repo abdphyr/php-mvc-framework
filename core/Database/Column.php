@@ -32,7 +32,12 @@ class Column
 
   public function number()
   {
-    $this->sql = "ALTER TABLE $this->tablename ADD COLUMN $this->column TINYINT NOT NULL";
+    $connection = $_ENV['DB_CONNECTION'];
+    if($connection === "mysql") {
+      $this->sql = "ALTER TABLE $this->tablename ADD COLUMN $this->column TINYINT NOT NULL";
+    } else if($connection === "pgsql") {
+      $this->sql = "ALTER TABLE $this->tablename ADD COLUMN $this->column INT NOT NULL";
+    }
     $this->pdo->exec($this->sql);
     return $this;
   }

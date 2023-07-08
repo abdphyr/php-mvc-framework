@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use Abd\Mvc\Providers\Provider;
+use Abd\Mvc\Providers\ServiceProvider;
 use App\Middlewares\AuthMiddleware;
 
-class AppServiceProvider extends Provider
+class AppServiceProvider extends ServiceProvider
 {
     public function register()
     {

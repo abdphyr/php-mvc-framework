@@ -1,0 +1,9 @@
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$kernel = new Abd\Mvc\Console\Kernel(__DIR__);
+
+$kernel->run($argv);
+
+$kernel->kill();

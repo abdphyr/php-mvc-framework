@@ -4,7 +4,7 @@ namespace Abd\Mvc\Providers;
 
 use Abd\Mvc\Kernel\Kernel;
 
-abstract class Provider
+abstract class ServiceProvider
 {
     protected Kernel $app;
     abstract function register();

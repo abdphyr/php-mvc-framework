@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Controllers;
+
+use Abd\Mvc\Request\Request;
+
+class Template extends BaseController
+{
+
+}

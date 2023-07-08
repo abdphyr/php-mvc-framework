@@ -16,10 +16,16 @@ class Schema extends CreatePDO
   public static function table($tablename)
   {
     self::$schema = new Schema($tablename);
-
-    self::$schema->pdo->exec("CREATE TABLE IF NOT EXISTS $tablename (
+    $connection = $_ENV['DB_CONNECTION'];
+    if ($connection === "pgsql") {
+      self::$schema->pdo->exec("CREATE TABLE IF NOT EXISTS $tablename (
+        id SERIAL PRIMARY KEY
+      )");
+    } else if ($connection === "mysql") {
+      self::$schema->pdo->exec("CREATE TABLE IF NOT EXISTS $tablename (
       id INT AUTO_INCREMENT PRIMARY KEY
     ) ENGINE=INNODB;");
+    }
     return self::$schema;
   }
 

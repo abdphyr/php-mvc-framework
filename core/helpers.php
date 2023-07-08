@@ -7,54 +7,68 @@ use Abd\Mvc\Middleware\MiddlewareServie;
 use Abd\Mvc\Request\Request;
 use Abd\Mvc\Response\Response;
 use Abd\Mvc\Router\Router;
+use Abd\Mvc\Session\Session;
 
-function request(): Request
-{
-  return App::helper('request');
+if (!function_exists('request')) {
+  function request(): Request
+  {
+    return App::helper('request');
+  }
 }
 
-function response(): Response
-{
-  return App::helper('response');
+if (!function_exists("response")) {
+  function response(): Response
+  {
+    return App::helper('response');
+  }
+}
+if (!function_exists("router")) {
+  function router(): Router
+  {
+    return App::helper('router');
+  }
+}
+if (!function_exists("db")) {
+  function db(): Database
+  {
+    return App::helper('database');
+  }
+}
+if (!function_exists("auth")) {
+  function auth(): Auth
+  {
+    return App::helper('auth');
+  }
+}
+if (!function_exists("middleware")) {
+  function middleware(): MiddlewareServie
+  {
+    return App::helper('middleware');
+  }
 }
 
-function router(): Router
-{
-  return App::helper('router');
+if (!function_exists("session")) {
+  function session(): Session
+  {
+    return App::helper('session');
+  }
 }
-
-function db(): Database
-{
-  return App::helper('database');
+if (!function_exists("view")) {
+  function view($view, $params = [], $layout = 'main')
+  {
+    return App::helper('view')->renderView($view, $params, $layout);
+  }
 }
-
-function auth(): Auth
-{
-  return App::helper('auth');
+if (!function_exists("prepare")) {
+  function prepare($sql)
+  {
+    return App::helper('database')->pdo->prepare($sql);
+  }
 }
-
-function middleware(): MiddlewareServie
-{
-  return App::helper('middleware');
-}
-
-function session()
-{
-  return App::helper('session');
-}
-
-function view($view, $params = [], $layout = 'main')
-{
-  return App::helper('view')->renderView($view, $params, $layout);
-}
-
-function prepare($sql)
-{
-  return App::helper('database')->pdo->prepare($sql);
-}
-
-function dd(...$arg)
-{
-  var_dump($arg);
-  die;
+if (!function_exists("dd")) {
+  function dd(...$arg)
+  {
+    var_dump($arg);
+    die;
+  }
 }

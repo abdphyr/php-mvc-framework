@@ -4,7 +4,7 @@ namespace Abd\Mvc\Providers;
 
 use Abd\Mvc\Session\Session;
 
-class SessionServiceProvider extends Provider
+class SessionServiceProvider extends ServiceProvider
 {
     public function register()
     {

@@ -4,7 +4,7 @@ namespace Abd\Mvc\Providers;
 
 use Abd\Mvc\Auth\Auth;
 
-class AuthServiceProvider extends Provider
+class AuthServiceProvider extends ServiceProvider
 {
     public function register()
     {

@@ -4,7 +4,7 @@ namespace Abd\Mvc\Providers;
 
 use Abd\Mvc\Response\Response;
 
-class ResponceServiceProvider extends Provider
+class ResponceServiceProvider extends ServiceProvider
 {
     public function register()
     {

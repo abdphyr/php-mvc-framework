@@ -12,7 +12,7 @@ require_once dirname(__DIR__) . "./core/helpers.php";
 
 $app->load();
 
-require_once dirname(__DIR__)."./routes/web.php";
+require_once dirname(__DIR__) . "./routes/web.php";
 
 $app->run();
 

@@ -4,7 +4,7 @@ namespace Abd\Mvc\Providers;
 
 use Abd\Mvc\Middleware\MiddlewareServie;
 
-class MiddlewareServiceProvider extends Provider
+class MiddlewareServiceProvider extends ServiceProvider
 {
     public function register()
     {

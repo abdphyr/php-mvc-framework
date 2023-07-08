@@ -4,7 +4,7 @@ namespace Abd\Mvc\Providers;
 
 use Abd\Mvc\Database\Database;
 
-class DatabaseServiceProvider extends Provider
+class DatabaseServiceProvider extends ServiceProvider
 {
     public function register()
     {

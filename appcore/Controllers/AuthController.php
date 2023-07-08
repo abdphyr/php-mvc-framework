@@ -9,12 +9,12 @@ class AuthController extends BaseController
 {
   public function loginView()
   {
-    return view('login', [], 'auth');
+    return view('auth.login', [], 'auth');
   }
 
   public function registerView()
   {
-    return view('register', [], 'auth');
+    return view('auth.register', [], 'auth');
   }
 
   public function register(Request $request)
@@ -28,7 +28,7 @@ class AuthController extends BaseController
     ], 'users');
 
     if ($isError) {
-      return view('register', [
+      return view('auth.register', [
         'model' => $request->body(),
         'errors' => $request->errors
       ], 'auth');
@@ -62,7 +62,7 @@ class AuthController extends BaseController
       session()->setFlash('success', "You are login successfully !");
       response()->redirect('/');
     } else {
-      return view('login', [], 'auth');
+      return view('auth.login', [], 'auth');
     }
   }
   public function logout()
@@ -73,6 +73,6 @@ class AuthController extends BaseController
 
   public function profile()
   {
-    return view('profile');
+    return view('auth.profile');
   }
 }

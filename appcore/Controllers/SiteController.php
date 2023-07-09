@@ -8,7 +8,12 @@ class SiteController extends BaseController
 {
   public function home()
   {
-    return view('home', auth()->user());
+    return view('home', ['firstname' => "Abdumannon", "lastname" => "Norboyev", "ar" => [1, 2]]);
+  }
+
+  public function api()
+  {
+    return response()->json(["api" => true]);
   }
 
   public function contact()

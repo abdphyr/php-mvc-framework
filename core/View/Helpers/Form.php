@@ -1,6 +1,6 @@
 <?php
 
-namespace Abd\Mvc\View;
+namespace Abd\Mvc\View\Helpers;
 
 class Form
 {

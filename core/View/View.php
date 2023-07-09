@@ -2,43 +2,36 @@
 
 namespace Abd\Mvc\View;
 
-use Abd\Mvc\Kernel\Kernel;
-
 class View
 {
-  public string $title = 'Document';
+  public $engines = [];
 
-  public function renderView($view, $params = [], ?string $layout = null)
+  public function __construct()
   {
-    $viewContent = self::renderOnlyView($view, $params);
-    $layoutContent = self::layoutContent($layout);
-    return str_replace('{{content}}', $viewContent, $layoutContent);
+    $this->loadEngines();
   }
 
-  public function renderContent($content, ?string $layout)
+  public function render($view, $props = [])
   {
-    $layoutContent = self::layoutContent($layout);
-    return str_replace('{{content}}', $content, $layoutContent);
+    $this->engines['html']->loadView($view);
+    $rendered = $this->engines['html']->render($props);
+    $this->engines = [];
+    return $rendered;
   }
 
-  private function layoutContent(?string $layout)
+  public function loadEngines()
   {
-    ob_start();
-    include_once Kernel::$ROOT_DIR . "/views/layouts/$layout.php";
-    return ob_get_clean();
-  }
-
-  private function renderOnlyView($view, $params)
-  {
-    if (strpos($view, ".") !== false) {
-      $view = str_replace(".", "/", $view);
+    $engines = scandir(__DIR__ . '/Engines');
+    foreach ($engines as $engine) {
+      if ($engine === '.' || $engine === '..') {
+        continue;
+      }
+      $path = __DIR__ . "/Engines/$engine";
+      require_once $path;
+      $class = pathinfo($path, PATHINFO_FILENAME);
+      $bindName = strtolower($class);
+      $template = __DIR__ . "/templates/$bindName.php";
+      $this->engines[$bindName] = new $class($template);
     }
-    foreach ($params as $key => $value) {
-      $$key = $value;
-    }
-
-    ob_start();
-    include_once Kernel::$ROOT_DIR . "/views/$view.php";
-    return ob_get_clean();
   }
 }

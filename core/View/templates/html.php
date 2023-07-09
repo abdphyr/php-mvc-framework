@@ -23,42 +23,59 @@
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{navigate('contact')}}">Contact</a>
+            <a class="nav-link" href="<?php echo navigate('contact') ?>">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{navigate('user-profile')}}">Profile</a>
+            <a class="nav-link" href="<?php echo navigate('user-profile') ?>">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{navigate('api-master')}}">Api</a>
+            <a class="nav-link" href="<?php echo navigate('api-master') ?>">Api</a>
           </li>
         </ul>
 
         <ul class="navbar-nav ml-auto">
-          @php $user = auth()->user() @endphp
-          @if($user)
+          <?php  $user = auth()->user()  ?>
+          <?php if ($user) : ?>
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
             </li>
-          @else
+          <?php else : ?>
             <li class="nav-item">
               <a class="nav-link" href="/login">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/register">Register</a>
             </li>
-          @endif
+          <?php endif ?>
         </ul>
       </div>
     </div>
   </nav>
   <div class="container">
-    @php $message = session()->getFlash('success') @endphp
-    @if($message)
+    <?php  $message = session()->getFlash('success')  ?>
+    <?php if ($message) : ?>
       <div class="alert alert-success">
-        {{ session()->getFlash('success') }}
+        <?php echo  session()->getFlash('success')  ?>
       </div>
-    @endif
-    @slot
+    <?php endif ?>
+    
+<div>
+    <?php if ($firstname == 'Abdumannon') : ?>
+        <div>Ok</div>
+    <?php else : ?>
+        <div>Noooo</div>
+    <?php endif ?>
+</div>
+<div>
+    <?php foreach($ar as $key => $item) : ?>
+        <div><?php echo  $item  ?></div>
+    <?php endforeach ?>
+
+    <?php for($i=0; $i<=10; $i++) : ?>
+        <div><?php echo  $i  ?></div>
+    <?php endfor ?>
+</div>
+
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>

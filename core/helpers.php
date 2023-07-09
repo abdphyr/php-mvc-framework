@@ -22,12 +22,21 @@ if (!function_exists("response")) {
     return App::helper('response');
   }
 }
+
 if (!function_exists("router")) {
   function router(): Router
   {
     return App::helper('router');
   }
 }
+
+if (!function_exists("navigate")) {
+  function navigate($name)
+  {
+    return App::helper('router')->navigate($name);
+  }
+}
+
 if (!function_exists("db")) {
   function db(): Database
   {
@@ -40,6 +49,7 @@ if (!function_exists("auth")) {
     return App::helper('auth');
   }
 }
+
 if (!function_exists("middleware")) {
   function middleware(): MiddlewareServie
   {
@@ -53,10 +63,11 @@ if (!function_exists("session")) {
     return App::helper('session');
   }
 }
+
 if (!function_exists("view")) {
-  function view($view, $params = [], $layout = 'main')
+  function view($view, $props = [])
   {
-    return App::helper('view')->renderView($view, $params, $layout);
+    return App::helper('view')->render($view, $props);
   }
 }
 if (!function_exists("prepare")) {
@@ -65,6 +76,7 @@ if (!function_exists("prepare")) {
     return App::helper('database')->pdo->prepare($sql);
   }
 }
+
 if (!function_exists("dd")) {
   function dd(...$arg)
   {

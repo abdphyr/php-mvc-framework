@@ -5,10 +5,14 @@ namespace Abd\Mvc\Router;
 class Router
 {
   public array $routes = [];
+  public array $names = [];
+  public array $middlewares = [];
 
-  public function resolve()
+  public function resolve($route = null, $method = null)
   {
-    $callback = $this->routes[request()->method()][request()->route()] ?? false;
+    $reMethod = $route ?? request()->method();
+    $routeName = $method ?? request()->route();
+    $callback = $this->routes[$reMethod][$routeName] ?? false;
 
     if ($callback === false) {
       response()->setStatusCode(404);
@@ -21,6 +25,15 @@ class Router
 
     if (is_array($callback)) {
       return middleware()->check($callback);
+    }
+  }
+
+  public function navigate($name)
+  {
+    if(isset($this->names[$name])) {
+      return $this->names[$name];
+    } else {
+      dd("Route $name not found");
     }
   }
 }

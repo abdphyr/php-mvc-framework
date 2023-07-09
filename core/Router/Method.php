@@ -19,12 +19,14 @@ class Method
   public function middleware($middleware)
   {
     router()->routes[$this->method][$this->route]['middleware'] = $middleware;
+    router()->middlewares[$this->route] = $middleware;
     return $this;
   }
 
   public function name($name)
   {
-    router()->routes[$this->method][$this->route]['name'] = $name;
+    router()->names[$name] = $this->route;
+    // router()->routes[$this->method][$this->route]['name'] = $name;
     return $this;
   }
 }

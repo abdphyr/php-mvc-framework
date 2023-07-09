@@ -45,7 +45,7 @@ class MiddlewareServie
   {
     $mycallback = [new $callback[0](), $callback[1]];
 
-    $middlewares = $callback['middleware'];
+    $middlewares = isset($callback['middleware']) ? $callback['middleware'] : false;
 
     if ($middlewares) {
       if (is_string($middlewares)) {

@@ -9,12 +9,12 @@ class AuthController extends BaseController
 {
   public function loginView()
   {
-    return view('auth.login', [], 'auth');
+    return view('auth.login', []);
   }
 
   public function registerView()
   {
-    return view('auth.register', [], 'auth');
+    return view('auth.register', []);
   }
 
   public function register(Request $request)
@@ -31,7 +31,7 @@ class AuthController extends BaseController
       return view('auth.register', [
         'model' => $request->body(),
         'errors' => $request->errors
-      ], 'auth');
+      ]);
     }
 
     $isRegister = User::use()->register($request->body());
@@ -54,7 +54,7 @@ class AuthController extends BaseController
       return view('login', [
         'model' => $request->body(),
         'errors' => $request->errors
-      ], 'auth');
+      ]);
     }
 
     $login = User::use()->login($request->body());
@@ -62,7 +62,7 @@ class AuthController extends BaseController
       session()->setFlash('success', "You are login successfully !");
       response()->redirect('/');
     } else {
-      return view('auth.login', [], 'auth');
+      return view('auth.login', []);
     }
   }
   public function logout()
